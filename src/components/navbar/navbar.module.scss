@@ -1,0 +1,37 @@
+
+
+.navbar{
+    // border-bottom: 1px solid black;
+    color: white;
+
+    .holder{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .slogan{
+        
+        
+    }
+
+    .links{
+        ul{
+            display: flex;
+            gap: 5rem;
+            
+           
+        }
+    }
+
+    .social{
+        display: flex;
+        gap: 1rem;
+
+        .icon{
+            font-size: 2rem;
+        }
+    }
+
+
+}
