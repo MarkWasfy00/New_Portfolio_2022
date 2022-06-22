@@ -3,6 +3,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import {useRef,useEffect} from 'react'
 
 import LandingSection from "./sections/landingPage/LandingSection";
+import ProjectPage from "./sections/ProjectPage/ProjectPage";
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -63,7 +64,7 @@ function App() {
   return (
     <main>
       <LandingSection />
-      <LandingSection />
+      <ProjectPage />
     </main>
   )
 }

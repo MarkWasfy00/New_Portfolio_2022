@@ -1,37 +1,123 @@
+@use '../../styles/Global/BreakPoints.scss' as *;
+
+
+@keyframes hoverEffect{
+    to{
+        right: 0;
+        width: 100%;
+        
+    }
+}
+
+@keyframes hoverEffectLeft {
+    from{
+        right: 0;
+        left: unset;
+        width: 100%;
+        bottom: 0;
+
+        
+    }
+    to{
+        right: 0;
+        bottom: 0;
+        left: unset;
+        width: 0;
+    }
+}
 
 
 .navbar{
-    // border-bottom: 1px solid black;
-    color: white;
-
+    height: 10vh;
     .holder{
         display: flex;
-        align-items: center;
         justify-content: space-between;
     }
 
-    .slogan{
-        
-        
-    }
 
     .links{
-        ul{
+        display: none;
+        gap: 2rem;
+        transition: .2s;
+        li{
+            transition: 1s;
+            a{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: black;
+                letter-spacing: 2px;
+                height: 100%;
+                position: relative;
+                transition: 1s;
+                
+                &::after{
+                    content: '';
+                    background-color: black;
+                    position: absolute;
+                    height: .2rem;
+                    // right: 0;
+                    bottom: 0;
+                    left: 0;
+                    width: 0;
+                    animation: hoverEffectLeft 1s forwards ease-out;
+                }
+                &:hover{
+                    &::after{
+                        
+                        animation: hoverEffect 1s forwards ease-in;
+                    }
+                    
+                }
+            }
+        }
+        @include media(sm){
             display: flex;
-            gap: 5rem;
-            
-           
         }
     }
 
     .social{
-        display: flex;
+        display: none;
+        align-items: center;
         gap: 1rem;
 
         .icon{
             font-size: 2rem;
         }
+
+        @include media(sm){
+            display: flex;
+        }
     }
 
+    .mobileNav{
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        gap: .4rem;
+      
+        span{
+            background-color: black;
+            height: .2rem;
+            display: block;
+            align-self: flex-end;
+            &:nth-child(1){
+                width: 3rem;
+            }
+            &:nth-child(2){
+                width: 2rem;
+                
+                
+            }
+            &:nth-child(3){
+                width: 1rem;
+            }
+        }
+
+        @include media(sm){
+            display: none;
+        }
+
+    }
 
 }
