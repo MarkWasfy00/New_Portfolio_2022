@@ -1,11 +1,112 @@
-
+@use '../../styles/Global/BreakPoints.scss' as *;
 
 
 .projects{
-
-    .title{
-        font-size: clamp(7rem,7vw,10vw);
-        font-weight: 700;
-    }
+    opacity: 0;
+    color: white;
+   
     
+    .title{
+        font-size: 5rem;
+        font-weight: 700;
+        padding-block: 3rem;
+        @include media(sm){
+            font-size: 10rem;
+        }
+    }
+
+   
+    
+
+    .holder{
+        
+        .swiper{
+            
+            .card{
+                
+               @include media(sm){
+                
+               };
+               padding: 1rem;
+    
+                .status{
+                    display: flex;
+                    align-items: center;
+                    gap: .5rem;
+                    
+                    .dotOnline{
+                        color: green;
+                    }
+                    .dotOffline{
+                        color: red;
+                    }
+                }
+                
+                
+    
+                .subtitle{
+                    max-width: 70rem;
+                }
+        
+                .photo{
+                   
+                    @include media(sm){
+                        // width: fit-content;
+                    }
+    
+                    img{
+                        max-height: 50vh;
+                        height: 100%;
+                        width: 100%;
+                        object-fit: contain;
+                    }
+                }
+                .text{
+                    background-color: bisque;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+
+                    @include media(sm){
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    .titleCard{
+                        font-size: 3rem;
+                        font-weight: 700;
+
+                        @include media(sm){
+                            font-size: 7rem;
+                        }
+                    }
+    
+                    .skills{
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 1rem;
+                        div{
+                            padding: 0 1rem;
+    
+                            background-color: white;
+                            color: black;
+    
+                        }
+                    }
+                    
+                    .links{
+                        display: flex;
+                        gap: 1rem;
+                        .icon{
+                            font-size: 2rem;
+                        }
+                    }
+    
+                }
+            }
+        }
+
+
+    }
+
 }

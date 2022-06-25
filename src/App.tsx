@@ -53,7 +53,7 @@ function App() {
   //   })
 
     ScrollTrigger.create({
-      snap:1 / (2 - 1),
+      snap:1 / (3 - 1),
      
     })
     
@@ -65,6 +65,10 @@ function App() {
     <main>
       <LandingSection />
       <ProjectPage />
+      
+      <ProjectPage />
+      
+     
     </main>
   )
 }

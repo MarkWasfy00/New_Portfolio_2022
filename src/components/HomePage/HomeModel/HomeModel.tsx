@@ -33,41 +33,32 @@ type GLTFResult = GLTF & {
 
 const HomeModel = () => {
   const robotModel = useRef<any>()
-  const light = useRef<any>()
+  const camera = useRef<any>()
 
   useEffect(() => {
-    if(robotModel.current){
-      const tl = gsap.timeline({repeat:-1,yoyo:true,defaults:{duration:4,ease:"slow(0.7, 0.7, false)"}})
-      if(window.innerWidth < 600){
-        tl
-        .to(robotModel.current.rotation,{
-          x:.5,
+    if(camera.current){
+      // const tl = gsap.timeline({repeat:-1,yoyo:true,defaults:{duration:2,ease:"slow(0.7, 0.7, false)"}})
+      const resetAnimation = setInterval(() => {
+        gsap.to(camera.current.position,{
+          x:0,
+          y:.8,
+          z:2,
+          ease:"slow(0.7, 0.7, false)",
         })
-        .to(robotModel.current.rotation,{
-          x:0
-        })
-      }else{
-      tl
-        .to(robotModel.current.rotation,{
-          y:4,
-        })
-        .to(robotModel.current.rotation,{
-          y:6
-        })
-      }
+      },5000)
       
-        
-        
+      return () => clearInterval(resetAnimation)
     };
     
-  },[robotModel.current,light.current])
+
+  },[camera.current])
   
   
   
   function Robot() {
     const { nodes, materials } = useGLTF('HomeModel/scene-transformed.glb') as GLTFResult
     return (
-      <group ref={robotModel} dispose={null} scale={0.15} rotation={[-.2,5,0]}>
+      <group ref={robotModel} dispose={null} scale={0.15} rotation={[-.2,4.7,0]}>
         <group rotation={[-Math.PI / 2, 0, 0]}>
           <group rotation={[Math.PI / 2, 0, 0]}>
             <mesh geometry={nodes.pCube43_lambert4_0.geometry} material={materials.lambert4} />
@@ -85,11 +76,11 @@ const HomeModel = () => {
 
   return (
     <>
-      <PerspectiveCamera  makeDefault position={[0,0.8,2]}  />
-      <OrbitControls   enableZoom={false}  />
+      <PerspectiveCamera ref={camera} makeDefault position={[0,0.8,2]}  />
+      <OrbitControls autoRotate  enableZoom={false}  />
       <ambientLight intensity={0.2} />
       <spotLight color="black" position={[1,-2,0]} />
-      <directionalLight ref={light} color="white" position={[0,1,0]} />
+      <directionalLight  color="white" position={[0,1,0]} />
       <Robot  />
     </>
   )
