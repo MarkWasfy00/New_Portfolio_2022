@@ -1,7 +1,7 @@
 @use '../../styles/Global/BreakPoints.scss' as *;
 
 .home {
-    
+    height: 100vh;
     .holder{
         display: flex;
         flex-direction: column;
@@ -31,8 +31,11 @@
            margin-top: 7rem;
        }
     .title{
-        font-size: 13rem;
+        font-size: 7rem;
         font-weight: 700;
+        @include media(sm){
+            font-size: 13rem;
+        }
     }
     .subtitle{
         font-size: 4rem;

@@ -1,6 +1,7 @@
 import gsap from "gsap"
 import ScrollTrigger from "gsap/ScrollTrigger";
 import {useRef,useEffect} from 'react'
+import ContactSection from "./sections/ContactPage/ContactSection";
 
 import LandingSection from "./sections/landingPage/LandingSection";
 import ProjectPage from "./sections/ProjectPage/ProjectPage";
@@ -52,10 +53,10 @@ function App() {
   //     }
   //   })
 
-    ScrollTrigger.create({
-      snap:1 / (3 - 1),
+    // ScrollTrigger.create({
+    //   snap:1 / (3 - 1),
      
-    })
+    // })
     
 
   // },[])
@@ -65,8 +66,8 @@ function App() {
     <main>
       <LandingSection />
       <ProjectPage />
+      <ContactSection />
       
-      <ProjectPage />
       
      
     </main>

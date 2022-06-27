@@ -10,20 +10,20 @@ import { GithubOutlined,LinkedinFilled, MenuOutlined } from '@ant-design/icons';
 
 const Navbar = () => {
   return (
-  <nav className={styles.navbar}>
+  <nav id="home" className={styles.navbar}>
     <div className={`container ${styles.holder}`}>
       <div className={styles.slogan}>
         <img src="/logo.png" alt="logo" width="110" height="110" />
       </div>
       <ul className={`link-xl ${styles.links}`}>
         <li>
-          <a href="#">HOME</a>
+          <a href="#home">HOME</a>
         </li>
         <li>
           <a href="#project">PROJECTS</a>
         </li>
         <li>
-          <a href="#">CONTACT</a>
+          <a href="#contact">CONTACT</a>
         </li>
       </ul>
       <div className={`${styles.social}`}>
