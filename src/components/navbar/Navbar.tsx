@@ -1,5 +1,5 @@
 import styles from './navbar.module.scss';
-import { GithubOutlined,LinkedinFilled, MenuOutlined } from '@ant-design/icons';
+import { FileTextOutlined, GithubOutlined,LinkedinFilled, MenuOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 
 
@@ -34,6 +34,7 @@ const Navbar = () => {
       <div className={`${styles.social}`}>
         <a target="_blank" href="https://github.com/MarkWasfy00"><GithubOutlined className={styles.icon} /></a>
         <a target="_blank" href="https://www.linkedin.com/in/mark-wasfy-595ba1235/"><LinkedinFilled className={styles.icon} /></a>
+        <a target="_blank" href="https://drive.google.com/file/d/1xJY36gKf3ENfg-MH3vo_c40oXNAeeKP_/view?usp=sharing"><FileTextOutlined className={styles.icon} /></a>
       </div>
       <div className={styles.mobileNav} onClick={() => setShowMenu(old => !old)}>
         <span></span>

@@ -1,23 +1,11 @@
 import gsap from 'gsap/all'
-import React, { useEffect, useRef } from 'react'
-
+import { useEffect, useRef } from 'react'
 import styles from './projectpage.module.scss';
 import { GithubOutlined, LinkOutlined, WifiOutlined } from '@ant-design/icons';
-
-type Card = {
-  imgPath:string;
-  availability:boolean;
-  title:string;
-  brief?:string;
-  gitHub:string;
-  live:string;
-
-}
 
 const ProjectPage = () => {
   const sectionRef = useRef<HTMLElement>(null)
   const titleRef = useRef<HTMLDivElement>(null)
-
   const cardRef = useRef<HTMLDivElement>(null)
   const cardImgRef = useRef<HTMLImageElement>(null)
   const cardTitleRef = useRef<HTMLDivElement>(null)
@@ -25,7 +13,17 @@ const ProjectPage = () => {
   const cardGithubRef = useRef<HTMLAnchorElement>(null)
   const cardLinkRef = useRef<HTMLAnchorElement>(null)
 
+
   useEffect(() => {
+    const start = "200px top";
+    const end = "bottom bottom";
+    const scrollDef = {
+      scrollTrigger:{
+        scrub:true,
+        start:start,
+        end:end,
+    }}
+    
     if(sectionRef.current){
       gsap.to(sectionRef.current,{
         // backgroundColor:'black',
@@ -58,26 +56,17 @@ const ProjectPage = () => {
           trigger:sectionRef.current,
           scrub:true,
           pin:cardRef.current,
-          start:window.innerWidth > 600 ? "3% top":"top top",
-          end:"bottom bottom",
+          start:start,
+          end:end,
+          markers:true,
         }
       })
       
-      const titleTl = gsap.timeline({scrollTrigger:{
-        scrub:true,
-      }});
-      const imgTl = gsap.timeline({scrollTrigger:{
-        scrub:true,
-      }});
-      const descTl = gsap.timeline({scrollTrigger:{
-        scrub:true,
-      }});
-      const githubTl = gsap.timeline({scrollTrigger:{
-        scrub:true,
-      }});
-      const linkTl = gsap.timeline({scrollTrigger:{
-        scrub:true,
-      }});
+      const titleTl = gsap.timeline(scrollDef);
+      const imgTl = gsap.timeline(scrollDef);
+      const descTl = gsap.timeline(scrollDef);
+      const githubTl = gsap.timeline(scrollDef);
+      const linkTl = gsap.timeline(scrollDef);
       
 
       titleTl
@@ -165,12 +154,10 @@ const ProjectPage = () => {
         .to(cardLinkRef.current,{
           href:"mazor"
         })
-     
-       
-      
     }
   },[sectionRef.current,titleRef.current,cardRef.current])
 
+  
   return (
     <section ref={sectionRef} className={styles.projects} id="project">
       <div className="container">
