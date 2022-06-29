@@ -7,6 +7,11 @@
     opacity: 0;
     transition: .2s;
     padding-block: 5rem;
+    height: 400rem;
+    
+    @include media(sm){
+        height: 500rem;
+    }
     
    .title{
        font-size: 5rem;
@@ -35,7 +40,7 @@
     .card{
         
         
-        border-bottom: 1px solid white;
+        
         display: flex;
         flex-direction: column;
 

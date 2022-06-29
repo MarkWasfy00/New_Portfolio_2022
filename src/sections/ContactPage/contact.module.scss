@@ -3,7 +3,7 @@
 
 .contact{
     background-color: white;
-  
+    height: 10rem;
 
     .cta{
         display: flex;
@@ -16,10 +16,9 @@
         button{ 
             border-radius: 5rem;
             font-weight: 700;
-            border: none;
             padding: 1rem;
-            color: white;
-            background-color: black;
+           
+          
             @include media(sm){
                 font-size: 5rem;
             }
@@ -45,15 +44,30 @@
         }
 
         button{
-            background-color: black;
-            border: none;
             border-radius: 10rem;
             padding: 1rem;
-            color: white;
-            max-width: fit-content;
-
+            font-weight: 200;
             @include media(sm){
                 font-size: 4rem;
+            }
+        }
+    }
+
+    button{
+        border: 1px solid black;
+        background-color: black;
+        transition: .2s;
+        a{
+            color: white;
+        }
+        &:hover{
+            border: 1px solid black;
+            background-color: white;
+            &:hover{
+                cursor: pointer;
+            }
+            a{
+                color: black;
             }
         }
     }

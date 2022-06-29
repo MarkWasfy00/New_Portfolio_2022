@@ -1,5 +1,6 @@
 import styles from './navbar.module.scss';
 import { GithubOutlined,LinkedinFilled, MenuOutlined } from '@ant-design/icons';
+import { useState } from 'react';
 
 
 
@@ -9,6 +10,10 @@ import { GithubOutlined,LinkedinFilled, MenuOutlined } from '@ant-design/icons';
 
 
 const Navbar = () => {
+
+  const [showMenu,setShowMenu] = useState(false)
+
+
   return (
   <nav id="home" className={styles.navbar}>
     <div className={`container ${styles.holder}`}>
@@ -27,14 +32,29 @@ const Navbar = () => {
         </li>
       </ul>
       <div className={`${styles.social}`}>
-        <GithubOutlined className={styles.icon} />
-        <LinkedinFilled className={styles.icon} />
+        <a target="_blank" href="https://github.com/MarkWasfy00"><GithubOutlined className={styles.icon} /></a>
+        <a target="_blank" href="https://www.linkedin.com/in/mark-wasfy-595ba1235/"><LinkedinFilled className={styles.icon} /></a>
       </div>
-      <div className={styles.mobileNav}>
+      <div className={styles.mobileNav} onClick={() => setShowMenu(old => !old)}>
         <span></span>
         <span></span>
         <span></span>
       </div>
+      <div className={`${styles.mobileSide} ${showMenu ? styles.show:''}`}>
+        <ul className="link-s">
+        <div className={`link-s ${styles.exit}`}  onClick={() => setShowMenu(false)}>X</div>
+          <li>
+            <a href="#home" onClick={() => setShowMenu(false)} >Home</a>
+          </li>
+          <li>
+            <a href="#project" onClick={() => setShowMenu(false)}>Projects</a>
+          </li>
+          <li>
+            <a href="#contact" onClick={() => setShowMenu(false)} >Contact</a>
+          </li>
+        </ul>
+      </div>
+      <div className={`${styles.backshadow} ${showMenu ? styles.backshadowShow:''}`} onClick={() => setShowMenu(false)} ></div>
     </div>
   </nav>
 )

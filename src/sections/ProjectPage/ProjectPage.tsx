@@ -4,9 +4,6 @@ import React, { useEffect, useRef } from 'react'
 import styles from './projectpage.module.scss';
 import { GithubOutlined, LinkOutlined, WifiOutlined } from '@ant-design/icons';
 
-
-
-
 type Card = {
   imgPath:string;
   availability:boolean;
@@ -21,6 +18,13 @@ const ProjectPage = () => {
   const sectionRef = useRef<HTMLElement>(null)
   const titleRef = useRef<HTMLDivElement>(null)
 
+  const cardRef = useRef<HTMLDivElement>(null)
+  const cardImgRef = useRef<HTMLImageElement>(null)
+  const cardTitleRef = useRef<HTMLDivElement>(null)
+  const cardDescRef = useRef<HTMLDivElement>(null)
+  const cardGithubRef = useRef<HTMLAnchorElement>(null)
+  const cardLinkRef = useRef<HTMLAnchorElement>(null)
+
   useEffect(() => {
     if(sectionRef.current){
       gsap.to(sectionRef.current,{
@@ -30,6 +34,7 @@ const ProjectPage = () => {
         scrollTrigger:{
           trigger:sectionRef.current,
           scrub:true,
+         
           start:"top center",
           end:"top top",
           
@@ -37,42 +42,134 @@ const ProjectPage = () => {
       })
       gsap.to(titleRef.current,{
         y:50,
+        z:50,
         duration:2,
         scrollTrigger:{
           trigger:sectionRef.current,
-          
+          scrub:true,
           start:"top center",
           end:"top top",
           
         }
       })
+      gsap.to(cardRef.current,{
+       ease:"none",
+        scrollTrigger:{
+          trigger:sectionRef.current,
+          scrub:true,
+          pin:cardRef.current,
+          start:window.innerWidth > 600 ? "3% top":"top top",
+          end:"bottom bottom",
+        }
+      })
+      
+      const titleTl = gsap.timeline({scrollTrigger:{
+        scrub:true,
+      }});
+      const imgTl = gsap.timeline({scrollTrigger:{
+        scrub:true,
+      }});
+      const descTl = gsap.timeline({scrollTrigger:{
+        scrub:true,
+      }});
+      const githubTl = gsap.timeline({scrollTrigger:{
+        scrub:true,
+      }});
+      const linkTl = gsap.timeline({scrollTrigger:{
+        scrub:true,
+      }});
+      
+
+      titleTl
+        .to(cardTitleRef.current,{
+          innerHTML:"E-commerce Website"
+        })
+        .to(cardTitleRef.current,{
+          innerHTML:"El-var Website"
+        })
+        .to(cardTitleRef.current,{
+          innerHTML:"Score Website"
+        })
+        .to(cardTitleRef.current,{
+          innerHTML:"Euro Website"
+        })
+      
+      imgTl
+        .to(cardImgRef.current,{
+          attr:{
+            src:"/pc.png"
+          }
+        })
+        .to(cardImgRef.current,{
+          attr:{
+            src:"/var.png"
+          }
+        })
+        .to(cardImgRef.current,{
+          attr:{
+            src:"/score.png"
+          }
+        })
+        .to(cardImgRef.current,{
+          attr:{
+            src:"/euro.png"
+          }
+        })
+      
+      descTl
+        .to(cardDescRef.current,{
+          innerHTML:"e-commerce website made with Next.js for frontend"
+        })
+        .to(cardDescRef.current,{
+          innerHTML:"soccer website scrapes data from another site"
+        })
+        .to(cardDescRef.current,{
+          innerHTML:"website made to get high score in lighthouse"
+        })
+        .to(cardDescRef.current,{
+          innerHTML:"regular website made with pure HTML/CSS"
+        })
+      
+      githubTl
+        .to(cardGithubRef.current,{
+          attr:{
+            href:'https://facebook.com'
+          }
+        })
+        .to(cardGithubRef.current,{
+          attr:{
+            href:'https://facebook.com'
+          }
+        })
+        .to(cardGithubRef.current,{
+          attr:{
+            href:'https://facebook.com'
+          }
+        })
+        .to(cardGithubRef.current,{
+          attr:{
+            href:'https://facebook.com'
+          }
+        })
+        
+      linkTl
+        .to(cardLinkRef.current,{
+          href:"mazor"
+        })
+        .to(cardLinkRef.current,{
+          href:"mazor"
+        })
+        .to(cardLinkRef.current,{
+          href:"mazor"
+        })
+        .to(cardLinkRef.current,{
+          href:"mazor"
+        })
+     
+       
+      
     }
-  },[sectionRef.current,titleRef.current])
-
-
-  function Card({imgPath,title,availability,brief,gitHub,live}:Card){
-    return(
-      <div className={styles.card}>
-        <div className={styles.photo}>
-          <img src={imgPath} alt="pc" />
-        </div>
-          <div className={styles.text}>
-            <div className={`link-s ${styles.status}`}>
-              <WifiOutlined className={availability ? styles.dotOnline:styles.dotOffline} />
-              <div className={`link-s`}>{availability ? "Online":"Offline"}</div>
-            </div>
-            <div className={`link-s ${styles.titleCard}`}>{title}</div>
-            <div className={`link-s ${styles.subtitle}`}>{brief}</div>
-            <div className={styles.links}>
-              <a target="_blank" href={gitHub}><GithubOutlined className={styles.icon} /></a>
-              <a target="_blank" href={live}><LinkOutlined className={styles.icon} /></a>
-            </div>
-          </div>
-      </div>
-    )
-  }
-
-  
+  },[sectionRef.current,titleRef.current,cardRef.current])
 
   return (
     <section ref={sectionRef} className={styles.projects} id="project">
@@ -80,14 +177,23 @@ const ProjectPage = () => {
         <div ref={titleRef} className={`headline-xs ${styles.title}`}>FEATURED PROJECTS.</div>
         <div className={styles.holder}>
         
-          <Card title="E-commerce Website" brief="e-commerce website made with Next.js for frontend" availability gitHub="#" live="#" imgPath="/pc.png" />
-
-          <Card title="El-var Website" brief="soccer website scrapes data from another site" availability={false} gitHub="#" live="#" imgPath="/var.png" />
-        
-          <Card title="Score Website" brief="website made to get high score in lighthouse" availability gitHub="#" live="#" imgPath="/score.png" />
-       
-          <Card title="Euro-TruckService" brief="regular website made with pure HTML/CSS" availability gitHub="#" live="#" imgPath="/euro.png" />
-       
+        <div ref={cardRef} className={styles.card}>
+          <div  className={styles.photo}>
+            <img ref={cardImgRef} src={"/pc.png"} alt="pc" />
+          </div>
+            <div className={styles.text}>
+              <div className={`link-s ${styles.status}`}>
+                <WifiOutlined  className={styles.dotOnline} />
+                <div className={`link-s`}>{"Online"}</div>
+              </div>
+              <div ref={cardTitleRef} className={`link-s ${styles.titleCard}`}>{'title'}</div>
+              <div ref={cardDescRef} className={`link-s ${styles.subtitle}`}>{'brief'}</div>
+              <div className={styles.links}>
+                <a ref={cardGithubRef} target="_blank" href={"#"}><GithubOutlined className={styles.icon} /></a>
+                <a ref={cardLinkRef} target="_blank" href={"#"}><LinkOutlined className={styles.icon} /></a>
+              </div>
+            </div>
+        </div>
         </div>
       </div>
     </section>
