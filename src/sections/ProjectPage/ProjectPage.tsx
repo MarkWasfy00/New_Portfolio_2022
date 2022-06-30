@@ -58,7 +58,6 @@ const ProjectPage = () => {
           pin:cardRef.current,
           start:start,
           end:end,
-          markers:true,
         }
       })
       
